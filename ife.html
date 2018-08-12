@@ -8,14 +8,27 @@
 body {
     margin:0;
 }
-#header {
-    background-color: rgb(0,0,0);
-    
+a {
+    text-decoration: none;
+}
+ul {
+    padding-left: 0;
+    margin-top: 0;
+    background-clip: border-box;
 }
 
-#header div {
+li {
+    list-style-type: none;
+}
+
+.contain {
     width: 960px;
     margin: 0 auto;
+}
+
+#header {
+    background-color: rgb(0,0,0);    
+    
 }
 
 #header div div:first-child {
@@ -30,7 +43,9 @@ body {
 #header div div:last-child {
     float: right;
     margin-top: 5px;
+    margin-right: 5px;
     width: 200px;
+    text-align: right;
     
 }
 #header a {
@@ -38,26 +53,98 @@ body {
     color: #ffffff;
 }
 #banner {
-    margin: 0;
-    
+    margin: 0;   
     background-color: #0ca714;
 }
 
+#banner .contain {
+    height: 150px;
+    position: relative;
+}
 
-#banner div {
-    width: 960px;
-    margin: 0 auto;
+#banner .contain ul{
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+}
+
+#banner li {
+    display: inline;
+    
+
+}
+
+#banner ul li a {
+color: #0ca714;
+display: inline-block;
+border: 1px solid black;
+padding: 5px;
+margin:5px;
+background-color: aquamarine;
+}
+
+#banner #niaho {
+    color: red;
+    padding-top: 15px;
+}
+
+
+
+
+
+
+#nav li {
+    
+    float: left;
+    border: 1px solid black;
+    border-radius: 10px 10px 0 0 ;
+    background-color: #646262;
+    
+    margin: 5px;
+    margin-bottom: 0px;
+   
+}
+#nav a {
+    text-align: center;
 }
 
 #nav {
     border-bottom: 1px solid #d6d5d5;
+    overflow: hidden;
+}
+
+
+#nav ul li #ni {
+
+background-color: #fff;
+
+border-bottom: 1px solid #fff;
+
+}
+
+
+.flex {
+    display: flex;   
+}
+.flex div{
+    margin:5px;
+    min-height: 90px;
+    border: 1px solid black;
+    flex: 1;
+    text-align: center;
+    line-height: 3;
+}
+#bottom {
+    text-align: center;
+    line-height: 2;
+    background-color: #646262;
 }
 
 </style>
 </head>
 <body>
     <div id="header">
-        <div>
+        <div class="contain">
             <div>Logo</div>
             <div>
                 <a href="#">Github</a>
@@ -67,29 +154,43 @@ body {
         </div>
     </div>
     <div id="banner">
-        <div>
-            <div><a>1</a></div>
-            <div><a>2</a></div>
-            <div><a>3</a></div>
-            <div><a>4</a></div>
+        <div class="contain">
+            <ul>
+                <li><a href="#">1</a></li>
+                <li ><a href="#" id="niaho">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+            </ul>
         </div>
     </div>
     <div id="nav">
-        <div>Home</div>
-        <div>Profile</div>
-        <div>About</div>
+        <div class="contain">
+            <ul>
+                <li><a id="ni" href="#">Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </div>
     </div>
     <div id="content">
-        <div>This is content 1</div>
-        <div>This is content 1</div>
-        <div>This is content 1</div>
-        <div>This is content 1</div>
-        <div>This is content 1</div>
-        <div>This is content 1</div>
-        <div>This is content 1</div>
-        <div>This is content 1</div>
-        <div>This is content 1</div>
-        <div>This is content 1</div>
+            <div class="contain">
+                <div class="flex">
+                    <div>This is content 1</div>
+                    <div>This is content 1</div>
+                    <div>This is content 1</div>
+                </div>
+                <div class="flex">
+                    <div>This is content 1</div>
+                    <div>This is content 1</div>
+                    <div>This is content 1</div>
+                    <div>This is content 1</div>
+                </div>
+                <div class="flex">
+                    <div>This is content 1</div>
+                    <div>This is content 1</div>
+                    <div>This is content 1</div>
+                </div>  
+            </div>
     </div>
     <div id="bottom">2018 ife.baidu.com</div>
 </body>
