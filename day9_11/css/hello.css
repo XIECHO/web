@@ -1,0 +1,256 @@
+body {
+	margin: 0;
+}
+
+.contain {
+	max-width: 960px;
+	margin:0 auto;	
+}
+
+header {
+	background-color: #555;
+}
+
+header .contain {
+	text-align: center;
+	padding: 150px 0;
+}
+
+
+
+header .contain h1 {
+	color: #fff;
+	font-size: 4em;
+}
+
+header p {
+	margin: 40px 100px;
+}
+
+header .contain h2 {
+	color: #fff;
+	font-size: 1.4em;
+}
+
+header .contain h3 {
+	font-size: 0.9em;
+}
+
+header .contain div {
+	border: 1px solid #888;
+	padding: 50px 80px;
+}
+header input[type="text"] {
+
+	width: 220px;
+	margin: 10px;
+	padding: 15px;
+	background: transparent;
+	border: 0.5px solid #444;
+
+} 
+
+header input[type="submit"] {
+	width: 100px;
+	padding: 15px;
+	background-color: #fff;
+	border: 0.5px solid #444;
+
+}
+
+#boat {
+	margin: 85px 0;
+}
+
+
+
+#boat h2 {
+	text-align: center;
+	font-size: 0.9em;
+
+}
+
+#boat h1 {
+	text-align: center;
+	font-size: 2em;
+	width: 600px;
+	margin: 0 auto;
+	font-weight: normal;
+}
+
+#boat .contain div {
+	display: inline-block;
+	width: 40%;
+	padding-left: 8%;
+	padding-top: 50px;
+	position: relative;
+}
+
+#boat .contain img {
+	position: absolute;
+	left: 20px;
+	top: 75px;
+}
+
+#ipad {
+	background-color: green;
+	overflow: hidden;
+	padding: 40px 0;
+}
+#ipad img {
+	float: right;
+	margin-left: 100px;
+}
+
+#ipad div:after {
+	content:"";
+	display: block;
+	clear: both;
+
+}
+
+#ipad h1 {
+	font-size: 2em;
+	font-weight: normal;
+	color: white;
+	margin-top:100px;
+	width:350px;
+}
+#ipad p {
+	color: white;
+	width:350px;
+}
+
+
+#ipad input {
+	border: 0.5px solid #888;
+	padding: 15px 0;
+	width: 200px;
+	margin: 30px 0;
+	text-align: center;
+}
+
+#products {
+
+	padding: 40px 0;
+}
+
+
+#products h2 {
+	text-align: center;
+
+}
+
+
+#products div div {
+	display: flex;
+
+}
+
+#products div div div {
+	display: flex;
+	flex-direction: column;
+}
+
+#products img {
+	margin: 30px auto;
+}
+
+#products p {
+
+	margin: 0 auto;
+	padding: 30px;
+}
+
+
+
+
+
+
+#learn .contain {
+	padding: 50px 0;
+	overflow: hidden;
+	/*margin:50px;*/
+}
+
+#learn #image32{
+	float: left;
+	margin-right: 40px;
+}
+#learn div:first-child:after {
+	content:"";
+	display: block;
+	clear: both;
+}
+
+#learn #image36 {
+	float: right;
+	margin-left: 40px;
+}
+
+#crew {
+	padding: 40px 0;
+}
+
+#crew h2 {
+	text-align: center;
+}
+
+#crew h4 {
+	text-align: center;
+	width: 700px;
+	margin: 16px auto;
+}
+#contact {
+	overflow: hidden;
+}
+
+#fell {
+	float: left;
+	border: 1px solid #555;
+	width: 440px;
+	padding: 15px 0;
+	text-align: center;
+	margin-right: 70px;
+	margin-bottom: 50px;
+
+}
+
+#fell input {
+	width: 320px;
+	padding: 15px 0;
+	margin: 15px 0;
+
+}
+
+#contacts {
+	padding: 30px 0;
+}
+
+
+footer {
+	height: 400px;
+	background-color: #000;
+}
+
+footer .contain {
+	display: flex;
+}
+
+footer dl {
+	margin: 80px 0;
+	width: 25%;
+}
+
+footer dt {
+	color: #444;
+	margin-left: 0;
+	margin: 25px 0;
+}
+
+
+footer dd {
+	color: #fff;
+	margin-left: 0;
+	margin:10px 0;
+}
