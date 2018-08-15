@@ -1,0 +1,76 @@
+html,body{
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+
+h1 {
+    background-color: rgb(77, 75, 75);
+    margin: 0;
+    padding-left: 40px;
+    color: white;
+    line-height: 2;
+}
+
+.odd {
+    float: left;
+    clear: left;
+    margin: 0;
+    padding:0 2% 0 2%;
+    border-bottom: 2px solid white;
+    background-color: rgb(158, 158, 158);
+    height: 100px;
+    width: 8%
+    
+
+    /* font-size: 1.2em;
+    line-height: 5;
+    margin: 0;
+    padding:0 20px 0 20px;
+    border-bottom: 2px solid white;
+    background-color: rgb(158, 158, 158); */
+}
+.even {
+    float: left;
+    padding-left: 2%;
+    border-bottom: 2px solid rgb(158, 158, 158); 
+    height: 100px;
+    width: 86%;
+   /* // border-right: 2px solid rgb(158, 158, 158);  */
+    /* font-size: 1em;
+    padding-left: 10px;
+    border-bottom: 2px solid rgb(158, 158, 158); */
+}
+
+h2 {
+    font-size: 1.2em;
+    text-align: center;
+    line-height: 3.5;
+}
+
+td:nth-of-type(2n){
+    text-align: left;
+    /* background-color: #22c3aa; */
+    padding-right: 40px;
+    
+}
+td:nth-of-type(2n+1){
+    text-align: right;
+    /* background-color: #aee2d9; */
+    font-weight: bold;
+   
+}
+dt {
+    font-weight: bold;
+}
+dd {
+    margin-left: 0;
+}
+
+dl {
+    margin: 0;
+    padding-top: 10px;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+</head>
+<body>        
+    <input id="first-number" type="number" value="0" placeholder="第一个数字">
+    <input id="second-number" type="number" value="0" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
+    <script>
+
+        var button = document.querySelectorAll("button");
+
+        for(let i = 0; i<button.length; i++){
+            button[i].addEventListener("click", operator);
+        }
+
+        function operator(event){
+
+            var first = document.getElementById("first-number").value;
+            var second = document.getElementById("second-number").value;
+
+            if(first == ""){
+                console.log("first is not a number");
+                return;
+            }
+
+            if(second == ""){
+                console.log("first is not a number");
+                return;
+            }
+
+            var firstNumber = Number(first);
+
+
+            var secondNumber = Number(second);
+
+
+
+            var temp;
+
+            switch(event.target.id){
+                case "add-btn":
+                    var temp = firstNumber + secondNumber;
+                    break;
+                case "minus-btn":
+                    var temp = firstNumber - secondNumber;
+                    break;
+                case "times-btn":
+                    var temp = firstNumber * secondNumber;
+                    break;
+                case "divide-btn":
+                    if(secondNumber === 0) {
+                        console.log("can't be divided by 0 ");
+                        document.getElementById("result").innerText = "运算结果：";
+                        return;
+                    }
+                    var temp = firstNumber / secondNumber;
+                    break;
+                default: console.log("nihaoa!");
+            }
+
+             document.getElementById("result").innerText = "运算结果："+ temp;
+        }
+        
+    </script>
+</body>
+</html>

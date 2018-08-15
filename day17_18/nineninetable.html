@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+    
+<script>
+    var i = 1;
+    var j;
+    var temp;
+    document.write("<table>");
+    for(; i < 10; i++){
+        document.write("<tr>");
+        for(j = 1; j <= i; j++){
+            temp = i * j;
+            document.write("<td>");
+            document.write(i + "*" + j + "=" + temp)
+            document.write("</td>");
+        }
+        document.write("</tr>");
+    }
+    document.write("</table>");
+
+    document.querySelector("table").style.border = "1px solid black";
+    var tdBorder = document.querySelectorAll("td");
+    for(let temp = 0; temp < tdBorder.length; temp++){
+        tdBorder[temp].style.border = "1px solid black";
+    }
+    
+</script>
+    </body>
+</html>
