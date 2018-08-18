@@ -28,6 +28,15 @@
 var button = document.getElementById("fade-btn");
 
 var count = 1;
+function fade(){
+    if(count > 0){
+        button.disabled = true;    
+    }
+    var t = setInterval(change,2);
+
+    
+}
+
 function change(){
         count = count - 0.001;
         rgb = "rgba(0,0,0,";
