@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+    <style>
+        #email-input{
+            width: 120px;
+            
+            border: 1px solid black;
+            font-size: 1em;
+        }
+        .email-sug li:hover {
+            background-color: aqua;
+        }
+        .select {
+            background-color: yellow;
+        }
+        #email-input {
+            position: relative;
+        }
+        #email-sug-wrapper {
+            position: absolute;
+            padding-left: 0;
+            margin: 0;
+        }
+        #email-sug-wrapper li {
+            list-style-type: none;
+            border-left: 1px solid #444; 
+            border-right: 1px solid #444; 
+            border-bottom: 1px solid #444; 
+            width: 120px;
+            overflow: hidden;
+            font-size: 1em;
+        }
+    </style>
+
+</head>
+<body>   
+<div class="wrapper">
+    <input id="email-input" type="text">
+    <ul id="email-sug-wrapper" class="email-sug"></ul>
+</div>
+
+<script>
+
+    
+var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+var emailInput = document.getElementById("email-input");
+var ulList = document.getElementById("email-sug-wrapper");
+var li;
+// 增加一个变量，用于存储当前选中的提示Li的序号
+var nowSelectTipIndex = 0;
+
+emailInput.addEventListener("keyup",function(event){
+    var keycode = event.keyCode;
+    var ulength =  ulList.children.length - 1;
+    //上
+    if(keycode == 38){
+        ulList.children[nowSelectTipIndex].className = ""
+
+        if(nowSelectTipIndex != 0){
+            nowSelectTipIndex = nowSelectTipIndex - 1
+        }else{
+            nowSelectTipIndex = ulength
+        }
+        
+        ulList.children[nowSelectTipIndex].className +="select"
+    }
+
+//网下
+    if(keycode == 40){
+        ulList.children[nowSelectTipIndex].className =""
+        if(nowSelectTipIndex != ulength){
+            nowSelectTipIndex = nowSelectTipIndex + 1
+        }else{
+            nowSelectTipIndex = 0
+        }
+        ulList.children[nowSelectTipIndex].className+="select"
+    }
+
+    if(keycode == 13){
+        emailInput.value = ulList.children[nowSelectTipIndex].innerText
+        hidden()
+        nowSelectTipIndex = 0
+
+    }
+
+    
+
+})
+
+// inputDom的输入监听 
+emailInput.addEventListener("input",function(event){
+    var keycode = event.keyCode;
+    if(keycode != 38 || keycode != 40 || keycode != 13){
+        var eValue = getInput(event);
+        var emailPost = tips(eValue);
+        var lilist = emailWrapper(emailPost);
+        console.log(lilist)
+        wrapperIsShown(eValue,lilist);
+    }
+})
+
+// function 获取用户输入
+function getInput(event){
+    return event.target.value.trim()
+}
+
+// function 生成提示框中的提示内容
+function tips(eValue){
+    var loc = eValue.indexOf("@")
+    var eValuePre = eValue;
+    var eValuePos = "";
+    
+    if(loc >= 0){
+        eValuePre = eValue.substring(0,loc);
+        eValuePos = eValue.substring(loc+1);
+    }
+
+    var eValuePost = postfixList.filter(function(x){
+        return x.startsWith(eValuePos)
+    }) 
+
+    if(eValuePost.length == 0){
+        emailPost = postfixList.map(function(x){
+            return eValuePre + "@" + x
+        })
+    }else{
+        emailPost = eValuePost.map(function(x){
+            return eValuePre + "@" + x
+        })
+    }
+    
+    return emailPost;
+}
+
+// function 将提示内容添加到email-sug-wrapper中
+function emailWrapper(emailPost){
+    var lilist = emailPost.map(function(x){
+        li = document.createElement("li");
+        li.appendChild(document.createTextNode(x));
+        return li;
+    });
+    // 新增
+    //将第nowSelectTipIndex个Li的样式设置为被选样式
+    lilist[nowSelectTipIndex].className += 'select';
+    return lilist;
+}
+
+// function 控制email-sug-wrapper的显示/隐藏状态
+function wrapperIsShown(eValue,lilist){
+    if(eValue == ""){
+        hidden()
+    }else{
+        hidden()
+        show(lilist)
+    }
+}
+
+// function 显示提示框
+function show(lilist){
+    lilist.forEach(function(x){
+        ulList.appendChild(x)
+    })  
+  // ulList.firstElementChild.style.backgroundColor = "yellow";
+}
+// function 隐藏提示框
+function hidden(){
+    var length = ulList.children.length;
+    for (var i = 0; i < length; i++) {
+        var a = ulList.children[0].remove();
+    }
+
+    //htmlCollection没有forEach方法
+    // ulList.children.forEach(function(x){
+    //     x.remove();
+    // })
+}
+
+
+ulList.addEventListener("click",function(event){
+    emailInput.value = event.target.innerText;
+    var length = ulList.children.length;
+
+    for (var i = 0; i < length; i++) {
+        var a = ulList.children[0].remove();
+    }
+
+})
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

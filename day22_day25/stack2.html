@@ -113,9 +113,11 @@ var scoreObject = {
 //     ["Tony", 95, 79, 68],
 //     ……
 // ];
+var list = [];
 function ota(obj){
-    
-
+    for(var i in obj){
+        list.push([i,scoreObject[i].Math,scoreObject[i].English,scoreObject[i].Music]);
+    }
 }
 
 
@@ -138,8 +140,12 @@ function ato (arr){
     var nameA ;
     var loc;
     arr.forEach(element => {
-        nameA = element[1];
-        loc = nameA.substring(4).split();
+        loc = element[2];
+        if(loc == -1){
+            menuObject[element[0]] = {}
+            menuObject.name = element[1];
+            menuObject.subMenu = {};
+        }
         
     });
 }
