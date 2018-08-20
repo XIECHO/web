@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+    <style>
+       
+    </style>
+
+</head>
+<body>   
+<select id="region-select">
+    <option>华东</option>
+    <option>华南</option>
+    <option>华北</option>
+</select>
+<div id="table-wrapper">
+</div>
+
+<script src="ife31data.js"></script>
+<script>
+// let sourceData = [{
+//     product: "手机",
+//     region: "华东",
+//     sale: [120, 100, 140, 160, 180, 185, 190, 210, 230, 245, 255, 270]
+// }, {
+//     product: "智能音箱",
+//     region: "华南",
+//     sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
+// }]
+
+var tableWrapper = document.getElementById("table-wrapper")
+var thArray = ["商品","地区","1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]
+
+document.getElementById("region-select").addEventListener("change",function(event){
+    var rType = event.target.value
+    var clearSD = selectValue(rType)
+    showTable(clearSD)  
+
+})
+
+function selectValue(rType){
+    var clearSD = sourceData.filter(function(x){
+        return x.region == rType
+    })
+    console.log(clearSD)
+    return clearSD
+}
+
+function clearDiv(){
+
+}
+
+
+
+function showTable(clearSD){
+    var table = document.createElement("table")
+    var tr = document.createElement("tr")
+    thArray.forEach(function(x){
+        var th = document.createElement("th")
+        th.appendChild(document.createTextNode(x))
+        tr.appendChild(th)
+    })
+    table.appendChild(tr)
+
+    clearSD.forEach(function(x){
+        var tr = document.createElement("tr")
+        var td = document.createElement("td")
+        td.appendChild(document.createTextNode(x.product))
+        tr.appendChild(td)
+        var td1 = document.createElement("td")
+        td1.appendChild(document.createTextNode(x.region))
+        tr.appendChild(td1)
+        x.sale.forEach(function(y){
+            var td = document.createElement("td")
+            td.appendChild(document.createTextNode(y))
+            tr.appendChild(td)
+        })
+        table.appendChild(tr)
+    })
+    tableWrapper.appendChild(table)
+}
+
+//    { product: "智能音箱",
+//     region: "华南",
+//     sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
+// }
+// function ota(obj){
+//     var arr = [];
+//     obj.forEach(function(x,i){
+//         arr[i] = [x.product,x.region];
+//         x.sale.forEach(function(temp){
+//             arr[i].push(temp);
+//         }) 
+//     })
+// }
+//     region-select的change事件 = function() {
+//     渲染新的表格(根据select选项获取数据)
+// }
+
+// function 根据select选项获取数据() {
+//     dosomething
+//     返回数据
+// }
+
+// function 渲染新的表格(data) {
+//     输出表头：商品、地区、1月、2月、…… 12月
+//     遍历数据 {
+//         输出每一行的表格HTML内容
+//     }
+//     把生成的HTML内容赋给table-wrapper
+// }
+</script>
+</body>
+</html>

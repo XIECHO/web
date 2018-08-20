@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<head>
+    <title>ife</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <div id="region-radio-wrapper">
+        <label>华东<input type="checkbox" name="region" checkbox-type="one" checked></label>
+        <label>华南<input type="checkbox" name="region" checkbox-type="one"></label>
+        <label>华北<input type="checkbox" name="region" checkbox-type="one"></label>
+        <label>全选<input type="checkbox" name="region" checkbox-type="all"></label>
+    </div>
+    <div id="product-radio-wrapper">
+        <label>手机<input type="checkbox" name="product" checkbox-type="one" checked></label>
+        <label>笔记本<input type="checkbox" name="product" checkbox-type="one"></label>
+        <label>智能音箱<input type="checkbox" name="product" checkbox-type="one"></label>
+        <label>全选<input type="checkbox" name="product" checkbox-type="all"></label>
+    </div>
+    <div id="table-wrapper">
+    </div>
+    <script src="ife31data.js"></script>
+    <script>
+var tableWrapper = document.getElementById("table-wrapper")
+//表头
+var thArray = ["商品","地区","1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]
+var regions = document.querySelectorAll("#" + "region-radio-wrapper" + " input[checkbox-type=one] ")
+var products = document.querySelectorAll("#" + "product-radio-wrapper" + " input[checkbox-type=one] ")
+//
+function checkBox(wrapper){
+    var wrap = document.getElementById(wrapper);
+    var one = document.querySelectorAll("#" + wrapper + " input[checkbox-type=one] ")
+    var all = document.querySelector("#" + wrapper + " input[checkbox-type=all] ")
+
+    wrap.addEventListener("click",function(event){
+        var cTarget = event.target;
+        
+        if(cTarget.type == "checkbox"){
+            var cbType = cTarget.attributes["checkbox-type"].nodeValue;
+            if(cbType == "all"){
+                one.forEach(function(x){
+                    if(x.checked == false){
+                        x.checked = true;
+                    } 
+                })
+                drawTable();
+                
+            }else{
+                console.log(cTarget.checked)
+                var bool = Array.prototype.slice.apply(one).map(function(x){
+                    return x.checked
+                })
+                var count = bool.filter(function(x){
+                    return x == true
+                })
+
+                if(count.length == one.length){
+                    all.checked = true
+                }else if(count.length == 0){
+                    cTarget.checked = true
+                }else{
+                    all.checked = false
+                }
+                drawTable();
+            }
+        }
+    })
+}
+
+checkBox("region-radio-wrapper")
+checkBox("product-radio-wrapper")
+
+function drawTable(){
+    var value = getRP()
+    var rValue = value[0]
+    var pValue = value[1]
+    var clearSD = selectValue(rValue, pValue)
+    showTable(clearSD)
+}
+
+function showTable(clearSD){
+    var table = document.createElement("table")
+    var tr = document.createElement("tr")
+    //var thArray = ["商品","地区","1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]
+    //地区在前
+    if(regions.length == 1 && products.length > 1){
+
+    }else{
+    //商品在前
+        thArray.forEach(function(x){
+            var th = document.createElement("th")
+            th.appendChild(document.createTextNode(x))
+            tr.appendChild(th)
+        })
+        table.appendChild(tr)
+
+        clearSD.forEach(function(x){
+        tr = document.createElement("tr")
+        td = document.createElement("td")
+        td.appendChild(document.createTextNode(x.product))
+        tr.appendChild(td)
+        td = document.createElement("td")
+        td.appendChild(document.createTextNode(x.region))
+        tr.appendChild(td)
+        x.sale.forEach(function(y){
+            td = document.createElement("td")
+            td.appendChild(document.createTextNode(y))
+            tr.appendChild(td)
+        })
+        table.appendChild(tr)
+    })
+    tableWrapper.appendChild(table)
+    }
+}
+
+
+function selectValue(rValue, pValue){
+    var rpValue = rValue +","+ pValue
+    
+    var clearSD = sourceData.filter(function(x){
+        return rpValue.indexOf(x.region) > -1 && rpValue.indexOf(x.product)>-1
+    })
+    return clearSD
+}
+
+function getRP(){
+    
+    var regionsOne = []
+    var productsOne = []
+    regions.forEach(function(x){
+            if(x.checked == true){
+                regionsOne.push(x.parentElement.innerText)
+            }
+        })
+    products.forEach(function(x){
+        if(x.checked == true){
+            productsOne.push(x.parentElement.innerText)
+        }
+    }) 
+
+    return [regionsOne,productsOne]   
+}
+    
+    
+    </script>
+</body>
