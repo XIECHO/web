@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ </head>
+ <body>
+   <canvas id="canvas" width="500" height="500"></canvas>
+   <script >
+function draw() {
+// 画一条线
+// 画一个矩形
+// 画一个圆形
+// 显示一些文字
+// 画一个时钟
+// 画一朵云
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext('2d');
+ctx.beginPath()
+ctx.moveTo(0,0)
+ctx.lineTo(125,125)
+ctx.stroke()
+
+
+ctx.rect(20,20,30,40)
+ctx.fill()
+
+ctx.moveTo(125,100)
+ctx.arc(100,100,25,0,Math.PI*2)
+ctx.stroke()
+}
+    draw()
+
+    function draw1() {
+  var ctx = document.getElementById('canvas').getContext('2d');
+  var lineCap = ['butt','round','square'];
+
+  // 创建路径
+  ctx.strokeStyle = '#09f';
+  ctx.beginPath();
+  ctx.moveTo(10,10);
+  ctx.lineTo(140,10);
+  ctx.moveTo(10,140);
+  ctx.lineTo(140,140);
+  ctx.stroke();
+
+  // 画线条
+  ctx.strokeStyle = 'black';
+  for (var i=0;i<lineCap.length;i++){
+    ctx.lineWidth = 15;
+    ctx.lineCap = lineCap[i];
+    ctx.beginPath();
+    ctx.moveTo(25+i*50,10);
+    ctx.lineTo(25+i*50,140);
+    ctx.stroke();
+  }
+
+ 
+  
+ ctx.font = "48px serif";
+ctx.textBaseline = "hanging";
+ctx.strokeText("Hello world", 200, 100);
+
+}
+
+draw1()
+  </script>
+ </body>
+</html>

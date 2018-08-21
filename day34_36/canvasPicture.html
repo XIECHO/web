@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+    <title>ife</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <div id="t"></div>
+    <canvas id="canv" width = "600px" height="600px"></canvas>
+    <script src="js/ife31data.js"></script>
+    
+    <script>
+
+        //获得数据
+function getValue(){
+   // 固定只显示华东地区手机12个月的数据
+   var eastPhone = sourceData.filter(function(x){
+       return x.region == "华东" && x.product == "手机"
+   }) 
+   var sale = eastPhone[0].sale;
+   bar(sale)
+}
+
+function bar(sale) {
+    var canvas = document.getElementById("canv")
+    var ctx = canvas.getContext("2d")
+    ctx.beginPath()
+    ctx.moveTo(50,100)
+    ctx.lineTo(50,400)
+    ctx.lineTo(450,400)
+    ctx.stroke();
+
+    console.log(sale)
+    ctx.moveTo(50,400)
+    //画折线图
+    for(let i = 0; i < sale.length; i++){
+        let x = 50 + 20*(i+1)
+        let y = 400 - sale[i]
+        ctx.lineTo(x,y)
+        ctx.arc(x,y,2,0,Math.PI*2)
+        ctx.stroke()
+        // ctx.fill()
+    }
+   
+}
+
+getValue()
+
+
+    </script>
+</body>
