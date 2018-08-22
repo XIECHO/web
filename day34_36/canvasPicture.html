@@ -20,28 +20,7 @@ function getValue(){
    bar(sale)
 }
 
-function bar(sale) {
-    var canvas = document.getElementById("canv")
-    var ctx = canvas.getContext("2d")
-    ctx.beginPath()
-    ctx.moveTo(50,100)
-    ctx.lineTo(50,400)
-    ctx.lineTo(450,400)
-    ctx.stroke();
 
-    console.log(sale)
-    ctx.moveTo(50,400)
-    //画折线图
-    for(let i = 0; i < sale.length; i++){
-        let x = 50 + 20*(i+1)
-        let y = 400 - sale[i]
-        ctx.lineTo(x,y)
-        ctx.arc(x,y,2,0,Math.PI*2)
-        ctx.stroke()
-        // ctx.fill()
-    }
-   
-}
 
 getValue()
 
