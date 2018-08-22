@@ -1,4 +1,5 @@
 function drawTable(){
+    clearTable()
     var value = getRP()
     var rValue = value[0]
     var pValue = value[1]
@@ -16,6 +17,9 @@ function drawTable(){
     showTable(sdArray,rValue,pValue)
 }
 
+function clearTable(){
+    tableWrapper.removeChild(tableWrapper.firstChild);
+}
 //获得选中的region和product
 function getRP(){
     var regionsOne = []

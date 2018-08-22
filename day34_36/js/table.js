@@ -4,7 +4,7 @@ function drawTable(){
     var rValue = value[0]
     var pValue = value[1]
     var clearSD = selectValue(rValue, pValue)
-    console.log(clearSD)
+   
     //将clearSD变成数组
     var sdArray = []
     clearSD.forEach(function(x,j){
@@ -48,6 +48,7 @@ function selectValue(rValue, pValue){
 
 function showTable(sdArray,rValue,pValue){
     var table = document.createElement("table")
+    table.setAttribute("id","prTable")
     var tr = document.createElement("tr")
     //var thArray = ["商品","地区","1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]
     //地区在前
@@ -91,6 +92,7 @@ function showTable(sdArray,rValue,pValue){
 }
 
 function tableValue(sdArray,rpValue,table){
+
     var tr;
     var td;
     sdArray.forEach(function(x,i){
@@ -111,4 +113,42 @@ function tableValue(sdArray,rpValue,table){
             table.appendChild(tr)
     })
     tableWrapper.appendChild(table)
+
+    
 }
+
+document.getElementById("table-wrapper").addEventListener("mouseover",function(event){
+    //console.log(event.target +""+event.target.parentElement.nodeName )
+    var eventT = event.target
+    var eventP = event.target.parentElement
+    var list = []
+    if(eventP.nodeName == "TR" && eventT.nodeName == "TD" ){
+        for(var i = eventP.children.length - 12; i < eventP.children.length; i++){
+            list.push(eventP.children[i].innerText)
+        }
+        bar(list)
+        bar1(list)
+    }
+   
+})
+
+document.getElementById("table-wrapper").addEventListener("mouseout",function(event){
+    var value = getRP()
+    var rValue = value[0]
+    var pValue = value[1]
+    var clearSD = selectValue(rValue, pValue)
+
+    var sdArray = []
+    clearSD.forEach(function(x,j){
+        sdArray[j] = []
+        for(let i = 0 ; i<x.sale.length; i++){
+            sdArray[j].push(x.sale[i])
+        }
+    })
+
+    sdArray.forEach(function(x,i){
+        bar2(x,i)
+    })
+
+
+})
