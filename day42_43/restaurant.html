@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<head>
+    <title>ife</title>
+    <meta charset="utf-8">
+</head>
+<body>
+
+    <script>
+function Restaurant(cash,seats,staff) {
+    this.cash = cash
+    this.seats = seats
+    this.staff = staff
+}
+
+function Restaurant(arr){
+    this.cash = arr.cash
+    this.seats = arr.seats
+    this.staff = arr.staff
+    
+}
+
+Restaurant.prototype.hire = function (newCook) {
+    this.staff.push(newCook)
+}
+Restaurant.prototype.fire = function (cook) {
+    var loc = this.staff.indexOf(cook)
+    this.staff.splice(loc,1)
+}
+function Employee(id,name,salary){
+    this.id = id
+    this.name = name
+    this.salary = salary
+}
+
+Employee.prototype.work = function () {
+    console.log("Employee work")
+}
+
+function Waiter() {
+    Employee.call(this)
+}
+
+Waiter.prototype = Object.create(Employee.prototype)
+Waiter.prototype.constructor = Waiter
+Waiter.prototype.work = function () {
+    console.log("Waiter work")
+}
+
+function Cook(name,salary) {
+    Employee.call(this,null,name,salary)
+}
+Cook.prototype = Object.create(Employee.prototype)
+Cook.prototype.constructor = Waiter
+Cook.prototype.work = function () {
+    console.log("Cook work")
+}
+
+function Customer() {
+
+}
+
+Customer.prototype.eat = function(){
+    console.log("eat")
+}
+
+Customer.prototype.order = function(){
+    console.log("order")
+}
+
+function Meal(name,price,cost) {
+    this.name = name
+    this.price = price
+    this.cost = cost
+}
+        
+    </script>
+</body>

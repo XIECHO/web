@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<head>
+    <title>ife</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <button id="a">A</button>
+    <button id="b">B</button>
+    <button id="c">C</button>
+    
+    <button id="d">D</button>
+    <button id="e">E</button>
+    <button id="f">F</button>
+    
+    
+    <div id="contABC"></div>
+    <div id="contDEF"></div>
+    <script>
+function resolve(){
+    console.log(location.hash.length)
+    var key = location.hash.substr(1)
+    console.log(key)
+    return key
+}
+function render(event) {
+    var key = resolve()
+    if(key == "a" || key == "b" || key == "c"){
+        document.getElementById("contABC").innerText = document.getElementById(key).innerText
+    }else if(key == "d" || key == "e" || key == "f"){
+        document.getElementById("contABC").innerText = document.getElementById(key).innerText
+    }
+}
+
+document.onclick = function(event) {
+    var target = event.target
+    if(target.id == "a"){ 
+        location.hash = "#a"
+    }else if(target.id == 'b'){
+        location.hash = "#b"
+    }else if(target.id == 'c'){
+        location.hash = "#c"
+    }else if(target.id == 'd'){
+        location.hash = "#d"
+    }else if(target.id == 'e'){
+        location.hash = "#e"
+    }else if(target.id == 'f'){
+        location.hash = "#f"
+    }
+}
+window.onhashchange = render
+render()
+
+        
+    </script>
+</body>

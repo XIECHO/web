@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head>
+    <title>ife</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <button id="a">A</button>
+    <button id="b">B</button>
+    <button id="c">C</button>
+    <div id="cont"></div>
+    <script>
+function resolve () {
+    if(location.hash){
+        var key = location.hash.charAt(1)
+        return key
+    }
+    return ""
+
+}
+function render (event) {
+    //     内容 = 解析Hash，获取状态参数()
+//     cont的innerHTML = 内容
+        var key = resolve()
+        if(key){
+            document.getElementById("cont").innerHTML = document.getElementById(key).innerText
+        }  
+}
+document.onclick = function(event) {
+    var target = event.target
+    if(target.id == "a"){ 
+        location.hash = "#a"
+
+    }else if(target.id == 'b'){
+        location.hash = "#b"
+
+    }else if(target.id == 'c'){
+        location.hash = "#c"
+
+    }
+}
+window.onhashchange = render
+
+render()
+        
+    </script>
+</body>
