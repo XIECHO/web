@@ -17,38 +17,55 @@
     <div id="contDEF"></div>
     <script>
 function resolve(){
-    console.log(location.hash.length)
-    var key = location.hash.substr(1)
-    console.log(key)
-    return key
+    if(!location.hash){
+        location.hash = "00"
+    }
+    return location.hash
 }
 function render(event) {
-    var key = resolve()
-    if(key == "a" || key == "b" || key == "c"){
-        document.getElementById("contABC").innerText = document.getElementById(key).innerText
-    }else if(key == "d" || key == "e" || key == "f"){
-        document.getElementById("contABC").innerText = document.getElementById(key).innerText
+    var key = resolve().slice(1)
+    
+    if(key[0] == "a" || key[0] == "b" || key[0] == "c"){
+        document.getElementById("contABC").innerText = document.getElementById(key[0]).innerText
+    }else {
+        document.getElementById("contABC").innerText = ""
+    }
+    if(key[1] == "d" || key[1] == "e" || key[1] == "f"){
+        document.getElementById("contDEF").innerText = document.getElementById(key[1]).innerText
+    }else {
+        document.getElementById("contDEF").innerText = ""
     }
 }
 
 document.onclick = function(event) {
     var target = event.target
+    var key = location.hash
+    
     if(target.id == "a"){ 
-        location.hash = "#a"
+        location.hash = "a" + key.slice(2)
     }else if(target.id == 'b'){
-        location.hash = "#b"
+        location.hash = "b" + key.slice(2)
     }else if(target.id == 'c'){
-        location.hash = "#c"
+        location.hash = "c" + location.hash.slice(2)
     }else if(target.id == 'd'){
-        location.hash = "#d"
+        location.hash = location.hash.slice(1,2) + "d"
     }else if(target.id == 'e'){
-        location.hash = "#e"
+        location.hash = location.hash.slice(1,2) + "e"
     }else if(target.id == 'f'){
-        location.hash = "#f"
+        location.hash = location.hash.slice(1,2) + "f"
     }
 }
 window.onhashchange = render
 render()
+
+
+window.addEventListener("popstate",function(event) {
+    console.log("xxxxxx")
+    console.log('location: ' + document.location);
+    console.log(event)
+  console.log('state: ' + JSON.stringify(event.state));
+
+})
 
         
     </script>

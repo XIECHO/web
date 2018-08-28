@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+    <title>ife</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <button id="a">A</button>
+    <button id="b">B</button>
+    <button id="c">C</button>
+    
+    <button id="d">D</button>
+    <button id="e">E</button>
+    <button id="f">F</button>
+    <input id="loginBtn" value="n" type="button">
+    
+    
+    <div id="contABC"></div>
+    <div id="contDEF"></div>
+    <script>
+
+function render(event) {
+    console.log(history.state)
+    var state = history.state || {}
+    if(state.ABC){
+        document.getElementById("contABC").innerText = document.getElementById(state.ABC).innerText
+    }
+
+    if(state.DEF){
+        document.getElementById("contDEF").innerText = document.getElementById(state.DEF).innerText
+    }
+}
+
+document.onclick = function(event) {
+    var target = event.target
+    var state = history.state || {}
+    if(target.id == "a"){ 
+        state.ABC = "a"
+    }else if(target.id == 'b'){
+        state.ABC = "b"
+    }else if(target.id == 'c'){
+        state.ABC = "c"
+    }else if(target.id == 'd'){
+        state.DEF = "d"
+    }else if(target.id == 'e'){
+        state.DEF = "e"
+    }else if(target.id == 'f'){
+        state.DEF = "f"
+    }
+
+    history.pushState(state,"","##"+state.ABC + "" + state.DEF)
+
+}
+window.onpopstate = render
+render()
+
+var createLoginLayer=(function(){
+    var div;
+    return function(){
+        if(!div){
+            div=document.createElement('div');
+            //创建一个登录框
+        }
+        console.log("dd")
+        return div;
+    }
+})();
+var count =0
+
+document.getElementById('loginBtn').onclick=function(){
+    var loginLayer=createLoginLayer();
+    loginLayer.style.display='block';
+    loginLayer.innerText = "ni"+ count++
+    document.getElementsByTagName("body")[0].appendChild(loginLayer)
+};
+
+        
+    </script>
+</body>
