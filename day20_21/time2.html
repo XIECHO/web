@@ -19,51 +19,76 @@
 // 在 按钮显示 淡入 的状态时，点击按钮，开始一个“淡入”（逐渐出现）的动画，和上面类似按钮不可点，直到透明度完全不透明
 // 淡入动画结束后，按钮文字变为“淡出”
 // 暂时不要使用 CSS animation （以后我们再学习）
-
-
-
-
-
-
-var button = document.getElementById("fade-btn");
-
-var count = 1;
-function fade(){
-    if(count > 0){
-        button.disabled = true;    
+let button = document.getElementById("fade-btn");
+let div = document.getElementById("fade-obj")
+var t ;
+button.addEventListener("click",(event) => {
+    if(button.innerHTML == "淡出"){
+        div.style.opacity = 1
+        button.disabled = true
+        t = setInterval(fade,100)
+    }else {
+        div.style.opacity = 0
+        button.disabled = true
+        t = setInterval(show,100)
     }
-    var t = setInterval(change,2);
+})
 
-    
-}
-
-function change(){
-        count = count - 0.001;
-        rgb = "rgba(0,0,0,";
-        rgb = rgb + count + ")";
-        document.getElementById("fade-obj").style.backgroundColor = rgb;
+function fade(){
+    if(div.style.opacity < 0){
+        clearInterval(t);
+        button.disabled = false
+        button.innerHTML = "淡入"
+        return;
+    }
+    div.style.opacity -= 0.1
 }
 
 function show(){
-        count = count + 0.001;
-        rgb = "rgba(0,0,0,";
-        rgb = rgb + count + ")";
-        document.getElementById("fade-obj").style.backgroundColor = rgb;
-        console.log(count);
-        if(count < 1){
-            button.disabled = true;
-            setTimeout(show, 2);
-        }else{
-            button.disabled = false;
-            button.innerHTML = "淡出";
-            button.removeEventListener("click" ,show);
-            button.addEventListener("click" ,fade);
-        }
+    if(div.style.opacity > 1){
+        clearTimeout(t);
+        button.disabled = false
+        button.innerHTML = "淡出"
+        return;
+    }
+    div.style.opacity = Number(div.style.opacity) + 0.1
 }
+// button.addEventListener("click",function(event) {
+//     if(button.innerHTML == "淡出"){
+//         div.style.opacity = 1
+//         button.disabled = true
+//         fade()
+//     }else {
+//         div.style.opacity = 0
+//         button.disabled = true
+//         show()
+//     }
+// })
+// var t ;
+// function fade(){
+//     if(div.style.opacity < 0){
+//         clearTimeout(t);
+//         button.disabled = false
+//         button.innerHTML = "淡入"
+//         return;
+//     }
+//     div.style.opacity -= 0.1
+//     t = setTimeout(fade,100) 
+// }
 
-if(button.innerText == "淡出"){
-    button.addEventListener("click" ,fade);
-}
+
+// function show() {
+//     if(div.style.opacity > 1){
+//         clearTimeout(t);
+//         button.disabled = false
+//         button.innerHTML = "淡出"
+//         return;
+//     }
+//     div.style.opacity = Number(div.style.opacity) + 0.1
+//     t = setTimeout(show,100) 
+// }
+
+
 
 
 

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>IFE</title>
+</head>
+<body>
+    <select id = "year"></select>
+    <select id = "month"></select>
+    <select id = "day"></select>
+    <select id = "hour"></select>
+    <select id = "minute"></select>
+    <select id = "second"></select>  
+    <div id = "result-wrapper"></div>
+    <script>
+var year = document.getElementById("year")
+var month = document.getElementById("month")
+var day = document.getElementById("day")
+var hour = document.getElementById("hour")
+var minute = document.getElementById("minute")
+var second = document.getElementById("second")
+
+var show = document.getElementById("result-wrapper")
+
+var selectList = [year,month,day,hour,minute,second]
+//生成option
+var option = function(i) {
+    return `<option value = '${i}'> ${i} </option>`;
+} 
+//是否是闰年
+var  isR = function(y) {
+    if((y % 4 == 0 && y % 100 != 0) || y % 400 == 0 )
+        return true
+    return false
+}
+
+//year
+var yearSelect = function() {
+    for(let i = 2000; i < 2031; i++ ){
+        year.innerHTML += option(i)
+    }
+}
+
+//month
+var monthSelect = function() {
+    for(let i = 1; i<13; i++) {
+        month.innerHTML += option(i)
+    }
+}
+
+//day
+var daySelect = function() {
+    var y = year[year.selectedIndex].innerHTML
+    var m = month[month.selectedIndex].innerHTML
+    day.innerHTML = ""
+    if(m == 1 || m == 3 || m ==5 || m ==7 || m==8 || m==10 || m ==12){
+        for(let i = 1; i < 32; i++) {
+            day.innerHTML += option(i)
+        }
+    }else if(m == 4 || m == 6 || m == 9 || m == 11) {
+        for(let i = 1; i < 31; i++) {
+            day.innerHTML += option(i)
+        }
+    }else {
+        if(isR(Number(y))){
+            for(let i = 1; i < 30; i++) {
+                day.innerHTML += option(i)
+            }
+        }else {
+            for(let i = 1; i < 29; i++) {
+                day.innerHTML += option(i)
+            }
+        }
+    }  
+}
+
+//hour
+var hourSelect = function() {
+    for(let i = 0; i<24; i++) {
+        hour.innerHTML += option(i)
+    }
+}
+
+//minute
+var minuteSelect = function() {
+    for(let i = 0; i<60; i++) {
+        minute.innerHTML += option(i)
+    }
+}
+
+//second
+var secondSelect = function() {
+    for(let i = 0; i<60; i++) {
+        second.innerHTML += option(i)
+    }
+}
+
+
+//改变天数
+year.addEventListener("change",function(event) {
+    daySelect()
+})
+
+//改变天数
+month.addEventListener("change",function(event){
+    daySelect()
+})
+
+//改变显示的时间
+selectList.forEach(function(i) {
+    i.addEventListener("change",function(event){
+        getTime()
+    })
+})
+
+//选择的时间并显示与现在的差值
+var getTime = function() {
+    var now = new Date()
+
+    var y = year[year.selectedIndex].innerHTML
+    var m = month[month.selectedIndex].innerHTML
+    var d = day[day.selectedIndex].innerHTML
+    var h = hour[hour.selectedIndex].innerHTML
+    var min = minute[minute.selectedIndex].innerHTML
+    var sec = second[second.selectedIndex].innerHTML
+    var date = new Date(y,m-1,d,h,min,sec)
+
+    var cha = date - now
+
+    if(date - now < 0) {
+        show.innerHTML = "现在距离 "+ date.toLocaleString() +" 已经过去" + chaT(cha)
+    }else {
+        show.innerHTML = "现在距离 "+ date.toLocaleString() +" 还有" + chaT(cha)
+    }
+}
+// 秒化为day + hour + ...
+var chaT = function(cha){
+    var cha = Math.abs(cha)
+    var dayCha = Math.floor(cha / (24 * 60 * 60 * 1000));
+    var i = cha % (24 * 60 * 60 * 1000);
+    var hourCha = Math.floor(i / (60 * 60 * 1000));
+    var j = i % (60 * 60 * 1000);
+    var minuteCha = Math.floor(j / (60 * 1000));
+    var k = j % (60 * 1000);
+    var secondCha = Math.floor(k / 1000);
+    return `${dayCha}天${hourCha}小时${minuteCha}分钟${secondCha}秒`
+}
+
+// 初始化
+yearSelect()
+monthSelect()
+daySelect()
+hourSelect()
+minuteSelect()
+secondSelect()
+getTime()
+// 循环
+setInterval(getTime,1000)
+
+    
+    </script>
+</body>
+
+</html>

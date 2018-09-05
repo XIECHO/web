@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ife</title>
+</head>
+<body onload="startTime()">
+    <div id = "time"></div>
+    <div id = "time2"></div>
+    <script>
+// 在页面中显示当前日期及时间，按秒更新
+// 格式为 YYYY 年 MM 月 DD 日 星期 D HH:mm:ss
+// 注意位数的补齐，比如：
+// -- 假设时间为2008年10月10日星期一的12点12分12秒，显示2008年10月10日星期一 12:12:12
+// -- 假设时间为2008年1月1日星期一的3点2分2秒，显示2008年01月01日星期一 03:02:02
+// 编码过程中，我们希望你注意对函数的封装，尽量让一个函数就做一个事情，而不要把所有的功能、代码揉在一起：
+// 封装一个函数，来根据某个日期返回这一天是星期几
+// 封装一个函数，把月、日、小时等出现个位数的情况前面补充0，补充为两位，比如1变为01
+// 封装一个函数，把最后的日期时间，按照要求的格式进行包装
+// 可能不止上面这些，尽可能地进行功能的解耦和拆解        
+var date = new Date()
+var t = document.getElementById("time")
+var t2 = document.getElementById("time2")
+
+var weekday = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六']
+var weekdayE = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Staurday']
+function getYear() {
+    return date.getFullYear()
+}
+
+function getMonth() {
+    return (date.getMonth() + 1 + "").padStart(2,'0')
+}
+
+function getDay() {
+    return (date.getDate() + "").padStart(2,'0')
+}
+function getWeek() {
+   return weekday[date.getDay()]
+}
+
+function getWeekE() {
+   return weekdayE[date.getDay()]
+}
+function getHours() {
+    return (date.getHours()  + "").padStart(2,'0')
+}
+
+function getHours2() {
+    if(date.getHours() > 12){
+        return (date.getHours() - 12  + "").padStart(2,'0')
+    }else {
+        return (date.getHours()  + "").padStart(2,'0')
+    }
+}
+
+function getMinutes() {
+    return (date.getMinutes()  + "").padStart(2,'0')
+}
+
+function getSeconds() {
+    return (date.getSeconds()  + "").padStart(2,'0')
+}
+
+function getAMPM() {
+    if(date.getHours() > 12){
+        return "PM"
+    }else {
+        return "AM"
+    }
+}
+//2008年10月10日星期一 12:12:12
+
+function showTime1() {
+    return getYear() + "年" + getMonth() + "月" + getDay() + "日" + getWeek() + getHours() + ":" + getMinutes() + ":" + getSeconds()
+}
+//输出格式变为：2008-10-10 Monday 07:10:30 PM
+function showTime2() {
+    return getYear() + "-" + getMonth() + "-" + getDay() + " " + getWeekE() + " " + getHours2() + ":" + getMinutes() + ":" + getSeconds() + " " +getAMPM()
+}
+
+var p 
+function startTime() {
+    date = new Date()
+    t.innerHTML = showTime1()
+    t2.innerHTML = showTime2()
+    p = setTimeout(startTime,1000)
+}
+
+ 
+    
+    </script>
+    
+</body>
+</html>
