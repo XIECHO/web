@@ -12,10 +12,10 @@ function Restaurant(cash,seats,staff) {
     this.staff = staff
 }
 
-function Restaurant(arr){
-    this.cash = arr.cash
-    this.seats = arr.seats
-    this.staff = arr.staff
+function Restaurant(obj){
+    this.cash = obj.cash
+    this.seats = obj.seats
+    this.staff = obj.staff
     
 }
 
@@ -36,8 +36,8 @@ Employee.prototype.work = function () {
     console.log("Employee work")
 }
 
-function Waiter() {
-    Employee.call(this)
+function Waiter(name,salary) {
+    Employee.call(this,null,name,salary)
 }
 
 Waiter.prototype = Object.create(Employee.prototype)
@@ -46,6 +46,16 @@ Waiter.prototype.work = function () {
     console.log("Waiter work")
 }
 
+
+function Cook(name,salary) {
+    Employee.call(this,null,name,salary)
+}
+
+Cook.prototype = Object.create(Employee.prototype)
+Cook.prototype.constructor = Cook
+Cook.prototype.work = function () {
+    console.log("Cook work")
+}
 
 
 function Customer() {
@@ -68,27 +78,91 @@ function Meal(name,price,cost) {
 
 
 
+var getSingle = function(obj) {
+    var result;
+    return function() {
+        var temp = obj().constructor
+        return result || ( result = new temp(arguments[0],arguments[1]) );
+    }
+}
+
+
 //创建一个厨师
-var singletonCook = (function(){
-    var instance = null;
-    function Cook(name,salary) {
-        Employee.call(this,null,name,salary)
-    }
-    Cook.prototype = Object.create(Employee.prototype)
-    Cook.prototype.constructor = Cook
-    Cook.prototype.work = function () {
-        console.log("Cook work")
-    }
-    return {
-        // name : 'Cook',
-        getInstance : function(name,salary){
-            if(instance === null){
-                instance = new Cook(name,salary)
-            }
-            return instance
-        }
-    }
-})()
+
+var createCook = function() {
+    return new Cook()
+}
+var createSingleCook = getSingle(createCook)
+var cook = createSingleCook("xixi",233)
+
+//创建一个服务员
+
+var createWaiter = function() {
+    return new Waiter()
+}
+var createSingleWaiter = getSingle(createWaiter)
+var waiter = createSingleWaiter("lili",233)
+
+//创建一个餐馆
+var ifeRestaurant = new Restaurant({
+    cash: 1000000,
+    seats: 20,
+    staff: []
+});
+//雇佣服务员和厨师
+ifeRestaurant.hire(cook)
+ifeRestaurant.hire(waiter)
+console.log(ifeRestaurant.staff);
+
+
+//顾客列表
+let customers = [];
+let c1 = new Customer();
+let c2 = new Customer();
+customers.push(c1);
+customers.push(c2);
+
+//菜单
+let mealList = [];
+mealList.push(new Meal("酸菜鱼", 10, 20));
+mealList.push(new Meal("烤鱼", 30, 50));
+mealList.push(new Meal("麻辣香锅", 10, 40));
+mealList.push(new Meal("烤肉", 18, 38));
+
+//招呼顾客
+for (let i=0;i<customers.length;i++) {
+    let random = Math.floor(Math.random() * mealList.length);
+    let meal = mealList[random];
+    customers[i].order(meal.name);
+    waiter.work();
+    cook.work();
+    customers[i].eat();
+}
+
+
+
+
+
+// var singletonCook = (function(){
+//     var instance = null;
+//     function Cook(name,salary) {
+//         Employee.call(this,null,name,salary)
+//     }
+//     Cook.prototype = Object.create(Employee.prototype)
+//     Cook.prototype.constructor = Cook
+//     Cook.prototype.work = function () {
+//         console.log("Cook work")
+//     }
+//     return {
+//         // name : 'Cook',
+//         getInstance : function(name,salary){
+//             if(instance === null){
+//                 instance = new Cook(name,salary)
+//             }
+//             return instance
+//         }
+//     }
+// })()
 //创建一个服务员
 
 //创建一个座位
