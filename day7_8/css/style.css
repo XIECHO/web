@@ -1,0 +1,146 @@
+body,html {
+    margin:0;
+}
+
+a {
+    color: inherit;
+}
+
+h1, p, ul {
+    margin: 0;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.main {
+    width: 960px;
+    margin: 0 auto;
+    position: relative;
+    height: inherit;
+}
+
+.header {
+    height: 80px;
+    background-color: #333;  
+    color: #fff;    
+}
+
+#logo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    line-height: 80px;
+}
+
+.nav {
+    position: absolute;
+    right: 0;
+    top: 10px;
+}
+
+.banner {
+    background-color: red;
+    height: 300px;
+    transform: 1s;
+}
+
+.banner-bullets {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.banner-bullet {
+    display: inline-flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 28px;
+    height: 34px;
+    margin-left: 5px;
+    line-height: 34px;
+    border: 1px solid #000;
+    background-color: #fff;
+    opacity: .5;
+}
+.banner-bullet:hover {
+    opacity: .7;
+    cursor: pointer;
+}
+
+.active {
+    padding-top: 10px
+}
+
+.tabs {
+    height: 70px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab-item {
+    float: left;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 51px;
+    padding: 0 30px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    background-color: #eeeeee;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-sizing: border-box;
+}
+
+.tabs .active {
+    border-color: #ccc;
+    border-bottom-color: #fff;
+    background-color: #fff;
+}
+
+.content .main {
+    padding-bottom: 20px;
+}
+
+.content-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-item {
+    flex: 1;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 176px;
+    padding: 80px;
+    margin: 10px 10px 0 0;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* .content-box:first-child .content-item:not(:last-child) {
+
+    flex: 1 25%;
+
+} */
+
+.footer {
+    height: 120px;
+    padding-top: 15px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    background-color: #666666;
+    box-sizing: border-box;
+}

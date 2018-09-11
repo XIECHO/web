@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>layout</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="main">
+            <h1 id = "logo">logo</h1>
+            <nav class = "nav"> 
+                <a href="#">Github</a>
+                <a href="#">Register</a>
+                <a href="#">Login</a>
+            </nav>
+        </div>
+    </header>
+    <section class="banner">
+        <div class="main">
+            <ul class="banner-bullets">
+                <li class="banner-bullet active" index = "1">1</li>
+                <li class="banner-bullet" index = "2">2</li>
+                <li class="banner-bullet" index = "3">3</li>
+                <li class="banner-bullet" index = "4">4</li>
+            </ul>
+        </div>
+    </section>
+
+    <nav class="tabs">
+        <ul class="main">
+            <li><a href="#" class="tab-item">Home</a></li>
+            <li><a href="#" class="tab-item active">Profile</a></li>
+            <li><a href="#" class="tab-item">About</a></li>
+        </ul>
+    </nav>
+    
+    <section class="content">
+        <div class="main">
+            <div class="content-box">
+                <div class="content-item">This is content 1</div>
+                <div class="content-item">This is content 1</div>
+                <div class="content-item">This is content 1</div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="content-box">
+                <div class="content-item" >This is content 1</div>
+                <div  class="content-item">This is content 1</div>
+                <div  class="content-item">This is content 1</div>
+                <div  class="content-item">This is content 1</div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="content-box">
+                <div  class="content-item">This is content 1</div>
+                <div  class="content-item">This is content 1</div>
+                <div  class="content-item">This is content 1</div>
+            </div>
+        </div>  
+    </section>
+    <footer class = "footer">
+        2018 ife.baidu.com
+    </footer>
+    <script>
+        let bannerColor = ["red","#0ca714","blue","orange"]
+        let bannerBackground = document.querySelector(".banner")
+        let banner = document.querySelector(".banner-bullets")   
+        let bannerChildren = banner.children;
+        var i = 1
+        var t 
+        function ban() {
+            for(let i =0 ; i<bannerChildren.length; i++) {
+                bannerChildren[i].classList.remove("active")
+            }
+            bannerChildren[i].classList.add("active")
+            bannerBackground.style.backgroundColor = bannerColor[i]
+            i++;
+            if( i === 4){
+                i = 0;
+            }  
+        }
+        console.log(bannerBackground)
+        t = setInterval(ban, 2000)
+
+        for (let index = 0; index < bannerChildren.length; index++) {
+            bannerChildren[index].addEventListener("click",(event) => {
+                clearInterval(t)
+                i = event.target.getAttribute("index") - 1
+                ban()
+                t = setInterval(ban,2000)
+            })
+            
+        }
+    </script>
+</body>
+</html>

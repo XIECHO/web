@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css_2/style_1.css" id="cssLink">
+    <title>resume</title>
+</head>
+<body>
+    <nav class="nav">
+        <span>切换样式：</span>
+        <button class="style-btn" data-file="style_1">style_1</button>
+        <button class="style-btn" data-file="style_2">style_2</button>
+        <button class="style-btn" data-file="style_3">style_3</button>
+    </nav>
+    <main class="wrap">
+        <header class="header">
+            <h1>简历</h1>
+        </header>
+        <section class="main">
+            <section class="item">
+                <h2 class="item-title">基本信息</h2>
+                <dl class = "item-list item-list-1">
+                    <dt>姓名</dt><dd>张三</dd>
+                    <dt>性别</dt><dd>男</dd>
+                    <dt>应聘职位</dt><dd>Web前端工程师</dd>
+                </dl>
+            </section>
+            <section class="item">
+                <h2 class="item-title">联系方式</h2>
+                <dl class = "item-list item-list-1">
+                    <dt>手机</dt><dd>1231231234</dd>
+                    <dt>Email</dt><dd>axi.baidu.com</dd>
+                    <dt>个人主页</dt><dd>Github</dd>
+                </dl>
+            </section>
+            <section class="item">
+                <h2 class="item-title">能力描述</h2>
+                <dl class = "item-list item-list-2">
+                    <dt>技术能力</dt>
+                    <dd>熟练掌握HTML，CSS，JavaScript</dd>
+                    <dt>综合能力</dt>
+                    <dd>良好的沟通，主动积极，努力勤奋</dd>
+                </dl>
+            </section>
+            <section class="item">
+                <h2 class="item-title">教育经历</h2>
+                <dl class = "item-list item-list-2">
+                    <dt>本科</dt>
+                    <dd>百度前端技术学院小薇学院</dd>
+                    <dt>研究生</dt>
+                    <dd>百度前端技术学院大斌学院</dd>
+                </dl>
+            </section>
+            <section class="item">
+                <h2 class="item-title">项目经历</h2>
+                <dl class = "item-list item-list-2">
+                    <dt>小度小度</dt>
+                    <dd>作为前端工程师角色参与了ABC组件的开发</dd>
+                    <dt>SAN Doc</dt>
+                    <dd>作为文档工程师参与了SAN Doc编写</dd>
+                </dl>
+            </section>   
+        </section>
+    </main>
+    <script>
+let cssLink = document.getElementById("cssLink")
+let btn = document.querySelectorAll(".style-btn")
+
+let length = btn.length
+for(let i = 0; i < length; i++) {
+    btn[i].addEventListener("click", () => {
+        let fileName = btn[i].dataset.file
+        cssLink.href = `css_2/${fileName}.css`
+    })
+} 
+    </script>
+</body>
+</html>
