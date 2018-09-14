@@ -23,7 +23,6 @@ function animate(offset) {
     let go = function (){
         if ( (speed > 0 && parseInt(banner.style.left) < newLeft) || (speed < 0 && parseInt(banner.style.left) > newLeft)) {
             banner.style.left = parseInt(banner.style.left) + speed + 'px'
-            console.log(banner.style.left)
             setTimeout(go, interval)
         }
         else {

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ife</title>
+    <style>
+        .border {
+            text-align:center;
+            line-height: 70px;
+            width: 70px;
+            height: 70px;
+            border: 1px solid #000;
+            margin: 50px;
+            display: inline-block;
+        }
+
+        .skew {
+            transform: skewX(30deg);
+        }
+
+        .scale {
+            transform: scaleX(.5);
+        }
+        
+        .rotate {
+            transform: rotate(45deg);
+        }
+
+        .translate {
+            -webkit-transform: translate(10px,10px);
+            transform: translate(10px,80px);
+        }
+
+        .all {
+            transform: translate(10px,80px)
+                       skewX(30deg)
+                       scaleX(.5)
+                       rotate(45deg);
+        }
+
+    
+    
+    </style>
+</head>
+<body>
+    <div class="border">box0</div>
+    <div class="border skew">box1</div>
+    <div class="border scale">box2</div>
+    <div class="border rotate">box3</div>
+    <div class="border translate">box4</div>
+    <div class="border all">box5</div>
+</body>
+</html>
